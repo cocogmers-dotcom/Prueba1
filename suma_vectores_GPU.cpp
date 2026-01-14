@@ -51,3 +51,5 @@ int main() {
     hipFree(d_a); hipFree(d_b); hipFree(d_c);
     return 0;
 }
+
+//si hago una modificaion que pex
