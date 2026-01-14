@@ -1,3 +1,28 @@
-# Ignorar ejecutables y archivos pesados
+# --- Compilación de GPU (ROCm/HIP) ---
+# Ignora cualquier archivo ejecutable (sin extensión)
+# Si tus programas no tienen extensión, es mejor listarlos por nombre:
+carga_pesada
 suma_vectores_GPU
+
+# Ignorar archivos de objeto y binarios
 *.o
+*.out
+*.bin
+
+# --- LaTeX ---
+# Ignorar todos los archivos temporales que genera la compilación
+*.aux
+*.log
+*.toc
+*.nav
+*.out
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# --- Sistema y Editores ---
+.DS_Store
+Thumbs.db
+.vscode/
