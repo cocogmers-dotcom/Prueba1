@@ -1,0 +1,3 @@
+# Ignorar ejecutables y archivos pesados
+suma_vectores_GPU
+*.o
