@@ -1,0 +1,293 @@
+    % Declaración de documento
+    
+    
+
+    \documentclass[a4paper,12pt]{article}
+
+    % Preámbulo
+
+    % Las siguientes tres líneas sólo son metadatos, aunque podemos utilizarlos más adelante dentro del documento
+
+    \title{Notas de programación en c++}
+
+    \date{27/12/2025}
+
+    \author{Sergio Romero}
+
+    % Las siguientes dos líneas especifican paquetes de funciones no estándar que, en este caso, permiten al documento manejar adecuadamente textos en español
+
+    \usepackage[spanish, mexico]{babel}
+
+    \usepackage[utf8]{inputenc}
+    
+    \usepackage{hyperref}
+
+	\usepackage{listings}
+
+	\usepackage{xcolor} 
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{Darkgreen}{rgb}{0,0.4,0}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,    
+%   rulecolor=,
+    language=[GNU]C++,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=false,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        numbers=left,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.026,0.112,0.095},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+%  identifierstyle=\color{magenta},
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color{Darkgreen},
+  stringstyle=\color{red}
+}
+
+	
+	
+    % Inicio del documento propiamente dicho
+
+    \begin{document}
+
+    % Aquí comienza el cuerpo del artículo
+
+    \maketitle
+
+    \section{Introducción}
+
+    Cuaderno de notas de C++ haciendo el curso: \url{https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/download/} lo iba a escribir en inglés pero siento que de momento se escapa a mis habilidades de inglés.
+
+	\section{Lecture 1 Notes: Introduction}
+	\url{https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/lecture-1-notes-introduction/}\newline	
+		
+	Los números \textit{enteros} van de desde -2.147.483.648 hasta
+	2.147.483.647, los números \textit{doubles} van hasta los 15 dígitos.	
+		
+    \begin{itemize}
+
+    \item Actualmente hay tres tipos de enteros: \textit{short}, \textit{int}
+    y \textit{long} a menos de que estés haciendo cosas muy especificas no te
+    debes de preocupar por esto.
+
+    \item Los tamaños y rangos de cada tipo no están completamente estandarizados; por lo general siempre se usan los estándares en la computadoras de 32 bits.
+
+    \end{itemize}
+
+Las operaciones sólo se pueden hacer entre los mismos tipos, es decir, si haces una división entre enteros, el resultado será entero ignorando los decimales, ejemplo $\frac{9}{2} = 4$, los decimales son truncados, por que es una operación entre enteros.
+
+La mejor praxis para declarar variables es:
+
+\begin{lstlisting}
+int x = 4 + 2;
+\end{lstlisting}
+
+\section{Lecture 2 Notes: Flow of Control}
+\url{https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/lecture-2-notes-flow-of-control/}\newline
+
+Cuando un programa se ejecuta normalmente éste va del inicio al final. Es decir el primer comando se ejecuta, luego el segundo, luego el tercero y así hasta llegar al final.Sin embargo es muy útil tener control sobre los comandos de ejecución, ya sea por conveniencia o por circunstancia. Por ejemplo un juego de computadora debería de poder mover al personaje del jugador por todo el mapa cuando el jugador quiera. Necesitamos tener control sobre el orden en que se ejecutan los comandos del programa, debemos tener control sobre el flow.\newline
+
+Por lo general hay dos tipos de condicionamientos, llamados estructuras de control, condicionales y ciclos. Los condicionales permiten al programa revisar el valor de variables y determinar si o no ejecutar ciertos comandos, en C++ hay \textit{if} y \textit{switch}. Los condicionales tienen dos tipos de operadores especiales: relacionales y lógicos. Sirven para determinar si un condición es verdadera o falsa. Son operaciones tipo $<$, $<=$, $>$, $>=$, $==$, $!=$, funcionan como su contraparte aritmética sin embargo su resultado es un valor Booleano, es decir verdadero o falso. Ejemplo $4<5$, verdadero, $4==4.0$, falso. Además hay operadores lógicos como $\&\&$, $||$, $!$, que representan, \textit{y}, \textit{o}, \textit{not}, respectivamente.\newline
+
+El condicional\textit{if} tiene la forma:
+
+\begin{lstlisting}
+if(condition)
+{
+	statement1
+	statement2
+}
+\end{lstlisting}
+
+La condición es una expresión que va a hacer comprobada. Si la condición es verdadera, entonces los comandos posteriores serán ejecutados. si la condición es falsa, los comandos serán ignorados. \newline
+
+El condicional \textit{if-else} es muy parecido al \textit{if}, solamente en caso de que sea falso la condición, los comandos del \textit{else} serán ejecutados. Nota que este condicional alguno de los dos condiciones se va a cumplir, por lo que los comandos ya sean del \textit{if} o del \textit{else} serán ejecutados.
+
+\begin{lstlisting}
+if(condition)
+{
+	statementA1
+	statementA2
+}
+else
+{
+	statementB1
+	statementB2
+}
+\end{lstlisting}
+
+El condicional \textit{else if} es usado para decidir sobre dos o más bloques basado en múltiples condiciones.
+
+\begin{lstlisting}
+if(condition1)
+{
+	statementA1
+	statementA2
+}
+else if(condition2)
+{
+	statementB1
+	statementB2
+}
+\end{lstlisting}
+
+Si la condición 1 se cumple, el bloque correspondiente al \textit{if} será ejecutado. Si no, sólo si la condición 2 se cumple los comandos de ese bloque serán ejecutados. Una vez un bloque se haya ejecutado, el resto será ignorado, así en este condicional podría no ejecutarse ningún bloque. Un \textit{else} puede ser agregado al final de este condicional, así de esta forma un bloque será ejecutado forzosamente.
+
+El condicional \textit{switch-case} tiene la estructura de que puede o no ejecutarse cierto conjunto de comandos. Sin embargo el condicional tiene una sintaxis peculiar.
+
+ \begin{lstlisting}
+switch(expression)
+{
+	case constant1:
+		statementA1
+		statementA2
+		...
+		break;
+	case constant2:
+		statementB1
+		statementB2
+		...
+		break;
+	...
+	default:
+		statementZ1
+		statementZ2
+		...
+}
+\end{lstlisting}
+
+El \textit{switch-case} evalúa la expresión y si la expresión es igual a la \textit{constant1} se ejecutarán los correspondientes comandos hasta encontrar el \textit{break}, sino, procede a revisar la \textit{constant2} de ser cierta, ejecutará los correspondientes comandos hasta encontrar el \textit{break}, sino, procederá a revisar la \textit{constant3} y así sucesivamente, en caso de que ninguna de las \textit{constants} haya sido verdadera se ejecutará el \textit{default}. Debido a la sintaxis del \textit{switch-case} los corchetes no son necesarios en casa \textit{case}, el \textit{switch-case} tiene su equivalente en \textit{if-else} pero el primero es mucho más \textbf{\textit{elegante}} a la hora de expresar el mismo comportamiento.
+    %Fin del documento
+ 
+ \subsection{Ciclos}
+ 
+ Los condicionales ejecutan cierto tipo de comandos si las condiciones son cumplidas, los ciclos ejecutan cierto de comando \textit{\textbf{mientras}} las condiciones se sigan cumpliendo. \textit{C++} tiene tres tipo de ciclos: \textit{while, do-while} y \textit{for}.
+
+El ciclo \textit{while} tiene la forma del condicional \textit{if}:
+
+\begin{lstlisting}
+while(condition)
+{
+	statement1
+	statement2
+	...
+}
+\end{lstlisting}
+
+Mientras la \textit{condition} se siga cumpliendo el segmento de bloque de los comando se seguirá ejecutando repetidamente.
+
+El ciclo \textit{do-while} es una variación del \textit{while} que garantiza que al menos una vez el segmento de bloque de los comandos se ejecutará.
+
+ 
+\begin{lstlisting}
+do
+{
+	statement1
+	statement2
+	...
+}
+while(condition);
+\end{lstlisting}
+
+Primero se ejecuta el segmento de bloque de los comandos, si la condición se mantiene, entonces repite el segmento de bloque, sino, termina el ciclo de repetición.
+
+\subsection{For}
+
+El ciclo \textit{for} funciona como el ciclo \textit{while} pero con un cambio en la sintaxis:
+
+\begin{lstlisting}
+for (initialization; condition; incrementation)
+{
+	statement1
+	statement2
+}
+\end{lstlisting}
+
+El ciclo \textit{for} es diseñado para permitir a una variable contadora que se inicializa en el principio del ciclo y que se va incrementando o disminuyendo en cada interacción del ciclo. Nota que el ciclo \textit{while} y el ciclo \textit{for} son equivalentes.
+
+
+\begin{lstlisting}
+initialization
+while(condition)
+{
+	statement1
+	statement2
+	...
+	incrementation
+}
+\end{lstlisting}
+
+Siendo su equivalente en ciclo \textit{for}:
+
+\begin{lstlisting}
+for (initialization; condition; incrementation)
+{
+	statement1
+	statement2
+}
+\end{lstlisting}
+ 
+El incremento puede ir en cualquier parte del bloque de segmento correspondiente, sin embargo es buena praxis dejarlo al final del bloque.
+
+\section{Nested Control Structures}
+
+Es posible colocar condicionales dentro de otros condicionales y ciclos dentro de otros ciclos, además es posible hacer cualquier combinación que se te ocurra de los temas de este resumen.
+
+Ejemplo:
+
+\begin{lstlisting}
+#include <iostream>
+using namespace std;
+
+int main(){
+for(int x=0; x<4; x=x+1){
+	for(int y=0; y<4; y=y+1)
+		cout << y;
+	cout << "\n";
+	}
+}
+\end{lstlisting}
+
+
+\section{Ejercicios}
+Lista de ejercicios de: \url{https://ocw.mit.edu/courses/6-096-introduction-to-c-january-iap-2011/resources/problem-set-1/}\newline
+\subsection{Hola mundo}
+Escribe un programa que su salida sea Hello, world! usando una constante \textbf{const char *} con el valor de Hello, world!.
+
+
+
+
+
+
+
+ 
+\end{document}
+ 
