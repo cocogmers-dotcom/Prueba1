@@ -36,6 +36,13 @@ int primo(const vector<int>& primos, int p)
     return 1;
 }
 
+
+int criba()
+{
+    return 1;
+}
+
+
 int main(){
     int n=0,m=1000,a,p;
     a=NumberRandom(n,m);
